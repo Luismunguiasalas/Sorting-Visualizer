@@ -4,7 +4,8 @@ const bubbleSortEl = document.getElementById('bubble-sort'); // get bubble sort 
 const insertionSortEl = document.getElementById('insertion-sort'); // get insertion sort element
 const quickSortEl = document.getElementById('quick-sort'); // get quick sort element
 const mergeSortEl = document.getElementById('merge-sort'); // get merge sort element
-const generateArrayEl = document.getElementById('generate-array') // create div element
+const comparisonEl = document.getElementById('comparison'); //get comparison element
+const generateArrayEl = document.getElementById('generate-array') // get generate array element
 let array_children = null; // to hold array of div elements
 
 /**
@@ -13,10 +14,12 @@ let array_children = null; // to hold array of div elements
  * the div elements will be appended to the 'mainEl'
  */
 function generateNewArray() {
-  for (let i = 0; i < 257; i++) {
+  // for (let i = 0; i < 257; i++) {
+  for (let i = 0; i < 10; i++) {
     const div = document.createElement('div');
     const divHeight = getRandomInteger(10, 650); // assing random (height) number 
     div.style.height = divHeight.toString() + 'px'; // add height to div
+    div.classList.add('block');
     mainEl.appendChild(div);
   }
 }
@@ -28,13 +31,16 @@ function generateNewArray() {
  */
 // random number generator helper function for 'generateNewArray'
 function getRandomInteger(min, max) {
-  return Math.random() * (max - min) + min;
+  return Math.ceil(Math.random() * (max - min) + min);
 }
 
 /**
  * Event handler:
  * generate new array when button 'generate array' is clicked, also, removes any existing child div elements
  */
+// generateArrayEl.onclick = () => {
+// console.log("this.generateArrayEl");
+// };
 generateArrayEl.onclick = () => {
   while (mainEl.firstChild) {
     mainEl.removeChild(mainEl.lastChild);
@@ -42,6 +48,10 @@ generateArrayEl.onclick = () => {
   generateNewArray();
   array_children = mainEl.children;
 }
+
+// bubbleSortEl.onclick = () => {
+//   console.log("In bubbleSort");
+// }
 
 /** BUBBLESORT */
 
@@ -51,28 +61,68 @@ generateArrayEl.onclick = () => {
  * swap if the element foud is grater than the next element
  * @param {Array} unsortedArray 
  */
-function bubbleSort(unsortedArray) {
+async function bubbleSort(unsortedArray) {
+
+  console.log('bubbleSort');
+  let swaps = 0
+  comparisonEl.innerText = swaps;
   const n = unsortedArray.length;
   for (let i = 0; i < n; i++) {
+    // console.log(unsortedArray[i]);
+    // console.log(unsortedArray[i].style.height);
+    // setTimeout(() => {
     for (let j = 0; j < (n - i - 1); j++) {
-      if (unsortedArray[j] > unsortedArray[j + 1]) {
-        let height = unsortedArray[j].divHeight;
-        let height2 = unsortedArray[j + 1].divHeight;
-        console.log(height);
-        console.log(height2);
-        unsortedArray[j], unsortedArray[j + 1] = unsortedArray[j + 1], unsortedArray[j]
+      let leftHeight = parseInt(unsortedArray[j].style.height);
+      let rightHeight = parseInt(unsortedArray[j + 1].style.height);
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          resolve();
+        }, 100)
+      );
+      if (leftHeight > rightHeight) {
+        console.log("in comparison: ");
+        // try {
+        console.log("in try");
+        // responce = await swap(unsortedArray[j], unsortedArray[j + 1], swaps);
+        await swap(unsortedArray[j], unsortedArray[j + 1], swaps);
+        // } catch (e) {
+        // console.log(e.message);
+        // }
       }
     }
   }
 }
 
+async function swap(leftDiv, rightDiv, swap) {
+  return new Promise((resolve) => {
+    console.log("In swap");
+    let tempDiv = leftDiv.style.transform;
+    leftDiv.style.transform = rightDiv.style.transform;
+    rightDiv = tempDiv;
+    swap += 1;
+    comparisonEl.innerText = swap;
+    window.requestAnimationFrame(() => {
+      setTimeout(() => {
+        array_children.insertBefore(rightDiv, leftDiv);
+        resolve();
+      }, 250)
+    })
+  })
+}
+
+bubbleSortEl.onclick = () => {
+  // console.log("In bubbleSort");
+  bubbleSort(array_children);
+}
 /**
  * Event handler:
  */
 
-bubbleSortEl.onclick = () => {
-  bubbleSort(unsortedArray);
-}
+// bubbleSortEl.onClick = () => {
+//   console.log("In bubbleSort");
+//   // bubbleSort(array_children);
+//   // bubbleSort(array_children);
+// }
 
 
 
@@ -119,3 +169,4 @@ function merge(left, right) {
     .concat(left.slice(leftIndex))
     .concat(right.slice(rightIndex));
 }
+

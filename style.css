@@ -27,6 +27,14 @@ header {
   border: red 1px solid;
 }
 
+.block {
+  /* width: 28px; */
+  /* background-color: #6b5b95; */
+  /* position: absolute; */
+  /* bottom: 0px; */
+  transition: 0.2s all ease;
+}
+
 #main div {
   display: inline-block;
   /* position: bottom; */
@@ -46,4 +54,14 @@ header {
   position: center;
   height: 700px;
   border: red 1px solid;
+}
+
+footer h2 {
+  display: inline-block;
+  margin-left: 2.4em;
+}
+#comparison {
+  display: inline-block;
+  font-size: 2em;
+  margin-left: 0.1em;
 }

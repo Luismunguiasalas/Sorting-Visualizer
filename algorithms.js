@@ -15,7 +15,7 @@ let array_children = null; // to hold array of div elements
  * the div elements will be appended to the 'mainEl'
  */
 function generateNewArray() {
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 25; i++) {
     const div = document.createElement('div');
     const divHeight = getRandomInteger(10, 650); // assing random (height) number 
     div.style.height = divHeight.toString() + 'px'; // add height to div
@@ -77,7 +77,7 @@ async function bubbleSort(unsortedArray) {
       await new Promise((resolve) =>
         setTimeout(() => {
           resolve();
-        }, 10)
+        }, 5)
       );
 
 
@@ -109,7 +109,7 @@ async function swap(leftDiv, rightDiv) {
     window.requestAnimationFrame(() => {
       setTimeout(() => {
         resolve();
-      }, 10)
+      }, 90)
     })
   })
 }

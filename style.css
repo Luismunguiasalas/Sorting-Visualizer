@@ -28,40 +28,51 @@ header {
 }
 
 .block {
-  /* width: 28px; */
-  /* background-color: #6b5b95; */
-  /* position: absolute; */
-  /* bottom: 0px; */
   transition: 0.2s all ease;
 }
 
 #main div {
   display: inline-block;
-  /* position: bottom; */
-  /* height: 500px; */
-  width: 2px;
-  margin: 2px;
+  width: 5px;
+  margin: 10px;
   margin-top: 5px;
-  background-color: black;
+  background-color: darkseagreen;
 }
 
 #main {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  /* flex-start: center; */
   align-items: flex-end;
   margin: auto;
   width: 90%;
-  position: center;
+  /* position: center; */
   height: 700px;
   border: red 1px solid;
 }
 
-footer h2 {
-  display: inline-block;
+footer {
   margin-left: 2.4em;
 }
-#comparison {
+
+footer h2 {
+  display: inline-block;
+  border: red 1px solid;
+}
+
+footer div {
+  display: inline-block;
+  margin-right: 4em;
+}
+
+#comparison,
+#time-complexity {
   display: inline-block;
   font-size: 2em;
   margin-left: 0.1em;
+}
+
+#time-complexity {
+  font-size: 1.5em;
 }

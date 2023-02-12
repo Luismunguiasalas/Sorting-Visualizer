@@ -5,6 +5,7 @@ const insertionSortEl = document.getElementById('insertion-sort'); // get insert
 const quickSortEl = document.getElementById('quick-sort'); // get quick sort element
 const mergeSortEl = document.getElementById('merge-sort'); // get merge sort element
 const comparisonEl = document.getElementById('comparison'); //get comparison element
+const timeComplexityEl = document.getElementById('time-complexity'); // get time complexity element
 const generateArrayEl = document.getElementById('generate-array') // get generate array element
 let array_children = null; // to hold array of div elements
 
@@ -14,12 +15,11 @@ let array_children = null; // to hold array of div elements
  * the div elements will be appended to the 'mainEl'
  */
 function generateNewArray() {
-  // for (let i = 0; i < 257; i++) {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 40; i++) {
     const div = document.createElement('div');
     const divHeight = getRandomInteger(10, 650); // assing random (height) number 
     div.style.height = divHeight.toString() + 'px'; // add height to div
-    div.classList.add('block');
+    div.classList.add('block'); // COULD REMOVE... MAYBE
     mainEl.appendChild(div);
   }
 }
@@ -38,20 +38,21 @@ function getRandomInteger(min, max) {
  * Event handler:
  * generate new array when button 'generate array' is clicked, also, removes any existing child div elements
  */
-// generateArrayEl.onclick = () => {
-// console.log("this.generateArrayEl");
-// };
+
+bubbleSortEl.onclick = () => {
+  timeComplexityEl.innerText = 'O(N^2)'
+  bubbleSort(array_children);
+};
+
 generateArrayEl.onclick = () => {
   while (mainEl.firstChild) {
     mainEl.removeChild(mainEl.lastChild);
   }
   generateNewArray();
   array_children = mainEl.children;
+  timeComplexityEl.innerText = '';
 }
 
-// bubbleSortEl.onclick = () => {
-//   console.log("In bubbleSort");
-// }
 
 /** BUBBLESORT */
 
@@ -63,66 +64,72 @@ generateArrayEl.onclick = () => {
  */
 async function bubbleSort(unsortedArray) {
 
-  console.log('bubbleSort');
   let swaps = 0
   comparisonEl.innerText = swaps;
   const n = unsortedArray.length;
+
   for (let i = 0; i < n; i++) {
-    // console.log(unsortedArray[i]);
-    // console.log(unsortedArray[i].style.height);
-    // setTimeout(() => {
     for (let j = 0; j < (n - i - 1); j++) {
       let leftHeight = parseInt(unsortedArray[j].style.height);
       let rightHeight = parseInt(unsortedArray[j + 1].style.height);
+
+      // need to promise 
       await new Promise((resolve) =>
         setTimeout(() => {
           resolve();
-        }, 100)
+        }, 10)
       );
+
+
       if (leftHeight > rightHeight) {
-        console.log("in comparison: ");
-        // try {
-        console.log("in try");
-        // responce = await swap(unsortedArray[j], unsortedArray[j + 1], swaps);
-        await swap(unsortedArray[j], unsortedArray[j + 1], swaps);
-        // } catch (e) {
-        // console.log(e.message);
-        // }
+        unsortedArray[j].style.backgroundColor = 'coral';
+        unsortedArray[j + 1].style.backgroundColor = 'coral';
+        swaps += 1;
+        comparisonEl.innerText = swaps;
+        await swap(unsortedArray[j], unsortedArray[j + 1]);
+        unsortedArray[j].style.backgroundColor = 'darkseagreen';
+        unsortedArray[j + 1].style.backgroundColor = 'darkseagreen';
       }
     }
   }
 }
-
-async function swap(leftDiv, rightDiv, swap) {
+/**
+ * 
+ * @param {Element} leftDiv 
+ * @param {Element} rightDiv 
+ * @returns 
+ */
+async function swap(leftDiv, rightDiv) {
   return new Promise((resolve) => {
-    console.log("In swap");
-    let tempDiv = leftDiv.style.transform;
-    leftDiv.style.transform = rightDiv.style.transform;
-    rightDiv = tempDiv;
-    swap += 1;
-    comparisonEl.innerText = swap;
+    let leftHeight = leftDiv.style.height;
+    let rightHeight = rightDiv.style.height;
+    leftDiv.style.height = rightHeight;
+    rightDiv.style.height = leftHeight;
+
     window.requestAnimationFrame(() => {
       setTimeout(() => {
-        array_children.insertBefore(rightDiv, leftDiv);
         resolve();
-      }, 250)
+      }, 10)
     })
   })
 }
 
-bubbleSortEl.onclick = () => {
-  // console.log("In bubbleSort");
-  bubbleSort(array_children);
-}
-/**
- * Event handler:
- */
 
-// bubbleSortEl.onClick = () => {
-//   console.log("In bubbleSort");
-//   // bubbleSort(array_children);
-//   // bubbleSort(array_children);
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -11,7 +11,7 @@ let array_children = null; // to hold array of div elements
 
 /**
  * generateNewArray(): 
- * will create 257 div elements and assign then a random height
+ * will create 25 div elements and assign then a random height
  * the div elements will be appended to the 'mainEl'
  */
 function generateNewArray() {
@@ -19,7 +19,6 @@ function generateNewArray() {
     const div = document.createElement('div');
     const divHeight = getRandomInteger(10, 650); // assing random (height) number 
     div.style.height = divHeight.toString() + 'px'; // add height to div
-    div.classList.add('block'); // COULD REMOVE... MAYBE
     mainEl.appendChild(div);
   }
 }
@@ -109,7 +108,7 @@ async function swap(leftDiv, rightDiv) {
     window.requestAnimationFrame(() => {
       setTimeout(() => {
         resolve();
-      }, 90)
+      }, 67)
     })
   })
 }

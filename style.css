@@ -27,11 +27,8 @@ header {
   /* border: red 1px solid; */
 }
 
-.block {
-  transition: 0.2s all ease;
-}
-
 #main div {
+  transition: 0.2s all ease;
   display: inline-block;
   width: 5px;
   margin: 10px;

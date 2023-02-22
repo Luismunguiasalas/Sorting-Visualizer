@@ -6,25 +6,25 @@ header {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  border: red 1px solid;
+  /* border: red 1px solid; */
 }
 
 #web-title {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  border: red 1px solid;
+  /* border: red 1px solid; */
 }
 
 #sort-buttons {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  border: red 1px solid;
+  /* border: red 1px solid; */
 }
 
 #sort-buttons div {
-  border: red 1px solid;
+  /* border: red 1px solid; */
 }
 
 .block {
@@ -49,7 +49,7 @@ header {
   width: 90%;
   /* position: center; */
   height: 700px;
-  border: red 1px solid;
+  /* border: red 1px solid; */
 }
 
 footer {
@@ -58,7 +58,7 @@ footer {
 
 footer h2 {
   display: inline-block;
-  border: red 1px solid;
+  /* border: red 1px solid; */
 }
 
 footer div {

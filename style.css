@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-weight: bold;
 }
 
 header {
@@ -7,6 +8,25 @@ header {
   justify-content: space-around;
   flex-direction: column;
   /* border: red 1px solid; */
+}
+
+button {
+  padding: 7px;
+  border: 2px solid black;
+}
+
+footer {
+  margin-left: 2.4em;
+}
+
+footer h2 {
+  display: inline-block;
+  /* border: red 1px solid; */
+}
+
+footer div {
+  display: inline-block;
+  margin-right: 4em;
 }
 
 #web-title {
@@ -47,20 +67,6 @@ header {
   /* position: center; */
   height: 700px;
   /* border: red 1px solid; */
-}
-
-footer {
-  margin-left: 2.4em;
-}
-
-footer h2 {
-  display: inline-block;
-  /* border: red 1px solid; */
-}
-
-footer div {
-  display: inline-block;
-  margin-right: 4em;
 }
 
 #comparison,

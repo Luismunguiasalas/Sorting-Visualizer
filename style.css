@@ -13,6 +13,16 @@ header {
 button {
   padding: 7px;
   border: 2px solid black;
+  border-radius: 7px;
+  transition-duration: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 footer {
@@ -78,4 +88,10 @@ footer div {
 
 #time-complexity {
   font-size: 1.5em;
+}
+
+#generate-array {
+  color: white;
+  background-color: darkseagreen;
+  /* background-image: darkseagreen; */
 }

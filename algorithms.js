@@ -43,6 +43,11 @@ bubbleSortEl.onclick = () => {
   bubbleSort(array_children);
 };
 
+insertionSortEl.onclick = () => {
+  timeComplexityEl.innerText = 'O(N^2)'
+  insertionSort(array_children);
+}
+
 generateArrayEl.onclick = () => {
   while (mainEl.firstChild) {
     mainEl.removeChild(mainEl.lastChild);
@@ -92,6 +97,7 @@ async function bubbleSort(unsortedArray) {
     }
   }
 }
+
 /**
  * 
  * @param {Element} leftDiv 
@@ -114,11 +120,97 @@ async function swap(leftDiv, rightDiv) {
 }
 
 
+/**
+ * 
+ * @param {Element} leftDiv 
+ * @param {Element} rightDiv 
+ * @returns 
+ */
+async function swap2(leftDiv, rightDiv) {
+  return new Promise((resolve) => {
+    leftDiv.style.height = rightDiv.style.height;
+    window.requestAnimationFrame(() => {
+      setTimeout(() => {
+        resolve();
+      }, 67)
+    })
+  })
+}
+
+/**
+ * 
+ * @param {Element} rightDiv 
+ * @param {integer} height 
+ * @returns 
+ */
+async function swap3(rightDiv, height) {
+  return new Promise((resolve) => {
+    rightDiv.style.height = height.toString() + 'px';
+    window.requestAnimationFrame(() => {
+      setTimeout(() => {
+        resolve();
+      }, 68)
+    })
+  })
+}
 
 
 
+/** INSERTIONSORT */
 
+/**
+ * insertionSort():
+ * traverse through all array elements
+ * insert if the element found is less than the element at index j
+ * @param {Array} unsortedArray 
+ */
+async function insertionSort(unsortedArray) {
+  let swaps = 0
+  comparisonEl.innerText = swaps;
 
+  let i, key, j;
+  for (i = 1; i < unsortedArray.length; i++) {
+
+    key = parseInt(unsortedArray[i].style.height);
+
+    j = i - 1;
+
+    next = parseInt(unsortedArray[j].style.height);
+
+    // need to promise 
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve();
+      }, 5)
+    );
+
+    /* Move elements of arr[0..i-1], that are 
+    greater than key, to one position ahead 
+    of their current position */
+
+    while (j >= 0 && next > key) {
+      unsortedArray[j].style.backgroundColor = 'coral';
+      swaps += 1;
+      comparisonEl.innerText = swaps;
+
+      await swap2(unsortedArray[j + 1], unsortedArray[j])
+
+      unsortedArray[j].style.backgroundColor = 'darkseagreen';
+
+      j = j - 1;
+      if (j !== -1) {
+        next = parseInt(unsortedArray[j].style.height);
+      }
+
+    }
+
+    unsortedArray[j + 1].style.backgroundColor = 'coral';
+
+    await swap3(unsortedArray[j + 1], key);
+
+    unsortedArray[j + 1].style.backgroundColor = 'darkseagreen';
+  }
+}
 
 
 

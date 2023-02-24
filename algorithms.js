@@ -33,19 +33,38 @@ function getRandomInteger(min, max) {
   return Math.ceil(Math.random() * (max - min) + min);
 }
 
+function disableBtn() {
+  generateArrayEl.disabled = true;
+  bubbleSortEl.disabled = true;
+  insertionSortEl.disabled = true;
+  // will add quick-sort and merge-sort after they are built
+}
+
+function enableBtn() {
+  generateArrayEl.disabled = false;
+  bubbleSortEl.disabled = false;
+  insertionSortEl.disabled = false;
+  // will add quick-sort and merge-sort after they are built
+}
+
 /**
  * Event handler:
  * generate new array when button 'generate array' is clicked, also, removes any existing child div elements
  */
 
-bubbleSortEl.onclick = () => {
+bubbleSortEl.onclick = async () => {
   timeComplexityEl.innerText = 'O(N^2)'
-  bubbleSort(array_children);
+  disableBtn();
+  await bubbleSort(array_children);
+  enableBtn();
 };
 
-insertionSortEl.onclick = () => {
+insertionSortEl.onclick = async () => {
+
   timeComplexityEl.innerText = 'O(N^2)'
-  insertionSort(array_children);
+  disableBtn();
+  await insertionSort(array_children);
+  enableBtn();
 }
 
 generateArrayEl.onclick = () => {
@@ -114,7 +133,7 @@ async function swap(leftDiv, rightDiv) {
     window.requestAnimationFrame(() => {
       setTimeout(() => {
         resolve();
-      }, 67)
+      }, 47)
     })
   })
 }
@@ -132,7 +151,7 @@ async function swap2(leftDiv, rightDiv) {
     window.requestAnimationFrame(() => {
       setTimeout(() => {
         resolve();
-      }, 67)
+      }, 47)
     })
   })
 }
@@ -149,7 +168,7 @@ async function swap3(rightDiv, height) {
     window.requestAnimationFrame(() => {
       setTimeout(() => {
         resolve();
-      }, 68)
+      }, 47)
     })
   })
 }
